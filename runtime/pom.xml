@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.pilhuhn.jfs2015</groupId>
+  <artifactId>runtime</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>de.pilhuhn.jfs2015</groupId>
+      <artifactId>annotations</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>jfs</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.2</version>
+            <configuration>
+              <!--<source>1.7</source>-->
+              <!--<target>1.7</target>-->
+              <proc>none</proc>
+            </configuration>
+            <executions>
+              <execution>
+                <!-- Execute the compiled plugin on the test sources -->
+                <id>jfs-compile</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <!-- only = nur Annotationen verarbeiten -->
+                  <proc>only</proc>
+                  <compilerArguments>
+                    <Averbose>true</Averbose>
+                  </compilerArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <dependencies>
+        <dependency>
+          <groupId>de.pilhuhn.jfs2015</groupId>
+          <artifactId>processor</artifactId>
+          <version>1.0.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
+
+</project>
